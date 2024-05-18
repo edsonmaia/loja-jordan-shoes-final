@@ -1,86 +1,31 @@
 import { numberFormatBR, limparFormatoReal } from './utils.js'
+import {
+    ocultarElemento,
+    mostrarElemento,
+    irParaHome,
+    irParaPagamento,
+    ocultarVoltarEsecaoDetalhes,
+    botaoVoltar,
+    numeroItens,
+    sectionHero,
+    sectionProdutos,
+    sectionDetalhesProduto,
+    sectionIdentifiquese,
+    sectionIdentificacao,
+    sectionCarrinho,
+    sectionPagamento
+} from './navegacao.js'
 
-const sectionHero = document.querySelector('.hero')
-const sectionProdutos = document.querySelector('.produtos')
-const botaoVoltar = document.querySelector('.voltar')
-const sectionDetalhesProduto = document.querySelector('.produto__detalhes')
-const sectionCarrinho = document.querySelector('.carrinho')
-// aula 28
-let usuarioLogado = false
-console.log('Usuário logado ', usuarioLogado)
-
-// ocultar ou mostrar elemento
-const ocultarElemento = (elemento) => {
-    elemento.style.display = 'none'
-}
-
-const mostrarElemento = (elemento, display='block') => {
-    elemento.style.display = display
-}
-
-// NAVEGACAO
-// aula 28
-const irParaHome = () => {
-    ocultarElemento(sectionPagamento)
-    ocultarElemento(sectionIdentificacao)
-    ocultarElemento(sectionIdentifiquese)
-    ocultarElemento(sectionCarrinho)
-    ocultarElemento(botaoVoltar)
-    ocultarElemento(sectionDetalhesProduto)
-    mostrarElemento(sectionHero, 'flex')
-    mostrarElemento(sectionProdutos, 'flex')
-}
-
-// aula 29
-const irParaPagamento = () => {
-    ocultarElemento(sectionIdentifiquese)
-    if(numeroItens.innerHTML > 0) {
-        ocultarElemento(sectionHero)
-        ocultarElemento(sectionProdutos)
-        ocultarVoltarEsecaoDetalhes()
-        ocultarElemento(sectionCarrinho)
-        mostrarElemento(sectionPagamento)
-    }
-}
-
-const ocultarVoltarEsecaoDetalhes = () => {
-    ocultarElemento(botaoVoltar)
-    ocultarElemento(sectionDetalhesProduto)
-}
-ocultarVoltarEsecaoDetalhes()
-
-botaoVoltar.addEventListener('click', () => {
-    mostrarElemento(sectionProdutos, 'flex')
-    ocultarVoltarEsecaoDetalhes()
-})
-
-const btnCarrinho = document.querySelector('.btn__carrinho .icone')
-btnCarrinho.addEventListener('click', () => {
-    if(numeroItens.innerHTML > 0) {
-        mostrarElemento(sectionCarrinho)
-        ocultarElemento(sectionHero)
-        ocultarElemento(sectionProdutos)
-        ocultarElemento(sectionDetalhesProduto)
-        ocultarElemento(sectionIdentificacao)
-        ocultarElemento(sectionPagamento)
-    }
-})
-
-const btnHome = document.querySelector('.link_home')
-btnHome.addEventListener('click', (event) => {
-    event.preventDefault()
-    // aula 28
-    irParaHome()
-})
-
-// NUMERO DE ITENS do CARRINHO
-const numeroItens = document.querySelector('.numero_itens')
-ocultarElemento(numeroItens)
+let cart = []
 
 const atualizarNumeroItens = () => {
     numeroItens.style.display = cart.length ? 'block' : 'none'
     numeroItens.innerHTML = cart.length
 }
+
+// aula 28
+let usuarioLogado = false
+// console.log('Usuário logado ', usuarioLogado)
 
 // PAGE HOME
 // pegar dados dos produtos
@@ -179,7 +124,6 @@ radios.forEach(radio => {
 
 // PAGE carrinho
 // pegar dados dos produtos
-let cart = []
 
 const btnAddCarrinho = document.querySelector('.btn__add_cart')
 btnAddCarrinho.addEventListener('click', () => {
@@ -260,7 +204,7 @@ const acaoBotaoApagar = () => {
     })
     atualizarNumeroItens()
     // aula 28
-    if(numeroItens.innerHTML <= 0) {
+    if(numeroItens.innerHTML <= 0) { 
         irParaHome()
     }
 }
@@ -276,13 +220,6 @@ const spanTotalCompra = document.querySelector('.total_compra')
 
 spanFrete.innerHTML = numberFormatBR.format(valorFrete)
 spanDesconto.innerHTML = numberFormatBR.format(valorDesconto)
-
-// aula 18
-const sectionIdentificacao = document.querySelector('.identificacao')
-const sectionPagamento = document.querySelector('.pagamento')
-
-ocultarElemento(sectionIdentificacao)
-ocultarElemento(sectionPagamento)
 
 const btnContinuarCarrinho = document.querySelector('.btn_continuar')
 btnContinuarCarrinho.addEventListener('click', () => {
@@ -569,10 +506,6 @@ formularioCadastrarUsuario.addEventListener('submit', (e) => {
     irParaPagamento()
 
 })
-
-// aula 27
-const sectionIdentifiquese = document.querySelector('.identifique-se')
-ocultarElemento(sectionIdentifiquese)
 
 // aula 29
 // pegar os dados do pagamento
