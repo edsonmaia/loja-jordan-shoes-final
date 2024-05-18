@@ -1,3 +1,5 @@
+import { cart } from './script.js'
+
 const sectionHero = document.querySelector('.hero')
 const sectionProdutos = document.querySelector('.produtos')
 const botaoVoltar = document.querySelector('.voltar')
@@ -80,6 +82,11 @@ btnHome.addEventListener('click', (event) => {
 const numeroItens = document.querySelector('.numero_itens')
 ocultarElemento(numeroItens)
 
+const atualizarNumeroItens = () => {
+    numeroItens.style.display = cart.length ? 'block' : 'none'
+    numeroItens.innerHTML = cart.length
+}
+
 export {
     ocultarElemento,
     mostrarElemento,
@@ -94,5 +101,6 @@ export {
     sectionIdentifiquese,
     sectionIdentificacao,
     sectionCarrinho,
-    sectionPagamento
+    sectionPagamento,
+    atualizarNumeroItens
 }

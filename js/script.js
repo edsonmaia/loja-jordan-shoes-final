@@ -13,15 +13,11 @@ import {
     sectionIdentifiquese,
     sectionIdentificacao,
     sectionCarrinho,
-    sectionPagamento
+    sectionPagamento,
+    atualizarNumeroItens
 } from './navegacao.js'
 
-let cart = []
-
-const atualizarNumeroItens = () => {
-    numeroItens.style.display = cart.length ? 'block' : 'none'
-    numeroItens.innerHTML = cart.length
-}
+export let cart = []
 
 // aula 28
 let usuarioLogado = false
