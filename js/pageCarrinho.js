@@ -1,5 +1,5 @@
 import { numberFormatBR, limparFormatoReal } from './utils.js'
-import { cart, usuarioLogado } from './script.js'
+import { cart } from './script.js'
 import { ocultarElemento, mostrarElemento, ocultarVoltarEsecaoDetalhes, sectionHero, sectionCarrinho, atualizarNumeroItens, numeroItens, irParaHome, sectionIdentifiquese } from './navegacao.js'
 // pegar dados dos produtos
 
@@ -46,7 +46,6 @@ const atualizarCarrinho = (cart) => {
         return valorAcumulado + limparFormatoReal(item.preco)
     }, 0)
     colunaTotal.innerHTML = numberFormatBR.format(total)
-    // aula 17
     spanSubTotal.innerHTML = numberFormatBR.format(total)
     spanTotalCompra.innerHTML = numberFormatBR.format(total + valorFrete - valorDesconto)
     
@@ -54,20 +53,16 @@ const atualizarCarrinho = (cart) => {
     criarCompra() // aula 29
 }
 
-// aula 29
 let compra = {}
 
 const criarCompra = () => {
-    console.log(cart)
     const dataAtual = new Date().toLocaleString()
-
     compra = {
         dataCompra: dataAtual,
         carrinho: cart,
         totalCompra: limparFormatoReal(spanTotalCompra.innerHTML)
     }
     localStorage.setItem('carrinho', JSON.stringify(compra))
-    console.log(JSON.parse(localStorage.getItem('carrinho')))
 }
 
 const acaoBotaoApagar = () => {
@@ -102,7 +97,6 @@ spanDesconto.innerHTML = numberFormatBR.format(valorDesconto)
 const btnContinuarCarrinho = document.querySelector('.btn_continuar')
 btnContinuarCarrinho.addEventListener('click', () => {
     ocultarElemento(sectionCarrinho)
-    // aula 28
     if(usuarioLogado) {
         mostrarElemento(sectionPagamento)
         return
