@@ -1,14 +1,13 @@
-import { cart } from './script.js'
+import { cart } from './pageCarrinho.js'
+import { logout } from './modalLoginLogout.js'
 
 const sectionHero = document.querySelector('.hero')
 const sectionProdutos = document.querySelector('.produtos')
 const botaoVoltar = document.querySelector('.voltar')
 const sectionDetalhesProduto = document.querySelector('.produto__detalhes')
 const sectionCarrinho = document.querySelector('.carrinho')
-// aula 18
 const sectionIdentificacao = document.querySelector('.identificacao')
 const sectionPagamento = document.querySelector('.pagamento')
-// aula 27
 const sectionIdentifiquese = document.querySelector('.identifique-se')
 
 // ocultar ou mostrar elemento
@@ -25,7 +24,6 @@ ocultarElemento(sectionPagamento)
 ocultarElemento(sectionIdentifiquese)
 
 // NAVEGACAO
-// aula 28
 const irParaHome = () => {
     ocultarElemento(sectionPagamento)
     ocultarElemento(sectionIdentificacao)
@@ -37,7 +35,6 @@ const irParaHome = () => {
     mostrarElemento(sectionProdutos, 'flex')
 }
 
-// aula 29
 const irParaPagamento = () => {
     ocultarElemento(sectionIdentifiquese)
     if(numeroItens.innerHTML > 0) {
@@ -86,6 +83,10 @@ const atualizarNumeroItens = () => {
     numeroItens.style.display = cart.length ? 'block' : 'none'
     numeroItens.innerHTML = cart.length
 }
+
+export const btnLogout = document.querySelector('#btn_logout')
+ocultarElemento(btnLogout) // esconder o botao Sair
+btnLogout.addEventListener('click', logout)
 
 export {
     ocultarElemento,

@@ -1,7 +1,9 @@
 import { numberFormatBR, limparFormatoReal } from './utils.js'
-import { cart } from './script.js'
-import { ocultarElemento, mostrarElemento, ocultarVoltarEsecaoDetalhes, sectionHero, sectionCarrinho, atualizarNumeroItens, numeroItens, irParaHome, sectionIdentifiquese } from './navegacao.js'
+import { ocultarElemento, mostrarElemento, ocultarVoltarEsecaoDetalhes, sectionHero, sectionCarrinho, atualizarNumeroItens, numeroItens, irParaHome, sectionIdentifiquese, sectionPagamento } from './navegacao.js'
+import { usuarioLogado } from './modalLoginLogout.js'
 // pegar dados dos produtos
+
+export let cart = []
 
 const btnAddCarrinho = document.querySelector('.btn__add_cart')
 btnAddCarrinho.addEventListener('click', () => {
@@ -23,7 +25,7 @@ btnAddCarrinho.addEventListener('click', () => {
 
 const corpoTabela = document.querySelector('.carrinho tbody')
 const colunaTotal = document.querySelector('.coluna_total')
-const atualizarCarrinho = (cart) => {
+export const atualizarCarrinho = (cart) => {
     corpoTabela.innerHTML = "" // limpar linhas da tabela
 
     cart.map( produto => {

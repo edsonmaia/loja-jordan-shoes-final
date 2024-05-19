@@ -4,6 +4,7 @@ import {
     irParaHome,
     irParaPagamento
 } from './navegacao.js'
+import { btnLogout } from './navegacao.js'
 
 export let usuarioLogado = false
 
@@ -38,12 +39,12 @@ export const fecharModal = () => {
 
 // controle de login
 export const nomeUsuario = document.querySelector('#nome_usuario')
-export const btnLogout = document.querySelector('#btn_logout')
+// export const btnLogout = document.querySelector('#btn_logout')
 const formularioLogar = document.querySelector('.form_logar')
 const emailLogin = document.querySelector('#email_login')
 const senhaLogin = document.querySelector('#senha_login')
 
-ocultarElemento(btnLogout) // esconder o botao Sair
+// ocultarElemento(btnLogout) // esconder o botao Sair
 
 formularioLogar.addEventListener('submit', (e) => {
     e.preventDefault()
@@ -57,7 +58,7 @@ formularioLogar.addEventListener('submit', (e) => {
     irParaPagamento()
 })
 
-const logout = () => {
+export const logout = () => {
     ocultarElemento(btnLogout)
     nomeUsuario.innerHTML = ''
     usuarioLogado = false
@@ -66,4 +67,4 @@ const logout = () => {
     irParaHome()
 }
 
-btnLogout.addEventListener('click', logout)
+// btnLogout.addEventListener('click', logout)

@@ -1,5 +1,6 @@
 import { mostrarElemento, irParaPagamento } from "./navegacao.js"
-import { fecharModal, nomeUsuario, btnLogout } from "./modalLoginLogout.js"
+import { fecharModal, nomeUsuario } from "./modalLoginLogout.js"
+import { btnLogout } from "./navegacao.js"
 
 let usuarioLogado = false
 
